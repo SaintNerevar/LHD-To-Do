@@ -52,6 +52,5 @@ class GitHub():
     def get_user_from_token(access_token):
         """Fetch user data using the access token."""
         url = api_url + '/user'
-        params = { 'access_token': access_token }
-
-        return requests.get(url, params=params).json()
+        headers = {'Authorization' : 'token ' + access_token}
+        return requests.get(url, headers=headers).json()
