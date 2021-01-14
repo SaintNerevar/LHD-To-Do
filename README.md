@@ -9,7 +9,7 @@ This is a hackathon boilerplate for new Flask web applications created by [Major
 This project requires the following tools:
 
 - Python - The programming language used by Flask.
-- PostgreSQL - A relational database system.
+- PostgreSQL - A relational database system. (Add Heroku Postgres to dyno if deploying on Heroku)
 - Virtualenv - A tool for creating isolated Python environments.
 
 This is a tweaked version with tutorials and other things removed so you can get straight to work!
