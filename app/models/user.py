@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from app.extensions import db
 from app.services.github import GitHub
 
@@ -8,6 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     avatar_url = db.Column(db.String(80), nullable=True)
     github_id = db.Column(db.Integer(), nullable=True)
+    tasks = db.relationship('Task', backref='user', lazy=True)
 
     def __init__(self, username, avatar_url, github_id):
         self.username = username
