@@ -5,19 +5,26 @@
     <title>Hackathon Project Name</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" >
     <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}" >
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   </head>
   <body>
     {% include "partials/header.html" %}
 
     {% include "partials/flash.html" %}
 
-    {% block header %}{% endblock %}
-
-    {% block content %}{% endblock %}
-
+    <div class="container-fluid h-100 pt-5">
+      <div class="row h-100">
+        <div class="col-sm-4 bg-red" >
+          {% block header %}{% endblock %}
+        </div>  
+        <div class="col-sm-8 bg-red-light">
+          {% block content %}{% endblock %}
+        </div>  
+      </div>
+    </div>
+  
     {% include "partials/footer.html" %}
 
     <!-- Scripts for Bootstrap -->
