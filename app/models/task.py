@@ -9,5 +9,10 @@ class Task(db.Model):
     create_date = db.Column(db.DateTime, nullable=False, default=datetime.date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+    def add_task(self, task_desc, user_id):
+        task = Task(description=task_desc, user_id=user_id)
+        db.session.add(task)
+        db.session.commit()
+
     def __repr__(self):
         return f"<Task: {self.description}"
