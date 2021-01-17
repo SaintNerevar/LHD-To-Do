@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, render_template, redirect, flash, url_for
-from flask import request, g
+from flask import request, g, session
 from app.models.task import Task
 
 blueprint = Blueprint('home', __name__)
@@ -11,6 +11,10 @@ def index():
 
 @blueprint.route('/create', methods=['POST'])
 def create():
+    if not 'access_token' in session:
+        flash("Login with your Github Account first, will Ya?", 'info')
+        return redirect(url_for('home.index'))
+
     if request.form['task-desc']:
         task_desc = request.form['task-desc']
         user_id = g.user.id
