@@ -8,7 +8,7 @@
 <div class="w-100">
     <h2 class="mb-3 pt-5 pl-1 font-bold" style="color: #DDDDDD;">Create a task now!!</h3>
   
-    <form method="POST">
+    <form action="{{ url_for('home.create') }}" method="POST">
         <div class="form-group">
             <input name="task-desc" class="form-control form-control-lg shadow" type="text" value="What's on your mind....">
         </div>
@@ -21,9 +21,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="my-5 py-5 text-center">
-    <p class="display-4 text-red mb-2">You don't have any tasks yet!</p>
-    <p class="display-4 text-red mb-4">Get Busy Friend!!</p>
-</div>
-<img class="img-fluid" src="{{ url_for('static', filename='img/deadpool2.png') }}">
+{% if not g.user.tasks %}
+    <div class="my-5 py-5 text-center">
+        <p class="display-4 text-red mb-2">You don't have any tasks yet!</p>
+        <p class="display-4 text-red mb-4">Get Busy Friend!!</p>
+    </div>
+    <img class="img-fluid" src="{{ url_for('static', filename='img/deadpool2.png') }}">
+{% else %}
+    {% include "partials/tasks.html" %}
+{% endif %}
 {% endblock %}
