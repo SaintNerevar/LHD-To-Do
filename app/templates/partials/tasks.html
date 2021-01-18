@@ -1,10 +1,10 @@
 {% for task in g.user.tasks %}
-    <div id class="container rounded bg-red shadow py-1 mb-4 px-4">
+    <div class="container rounded-pill bg-red shadow pt-1 mb-4 px-4">
         <div class="row">
             <p style="color: #DDDDDD; word-wrap:break-word" class="lead w-75">{{ task['description'] }}</p>
             <form action="{{ url_for('home.delete') }}" method="POST" class="ml-auto my-auto h-100">
                 <input type="hidden" value="{{ task.id }}" name="task-id">
-                <button class="btn btn-dark shadow" type="submit">Delete</button>
+                <button class="btn btn-dark rounded-pill shadow" type="submit">Delete</button>
             </form>
         </div>
     </div>

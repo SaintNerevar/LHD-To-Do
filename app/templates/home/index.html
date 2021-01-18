@@ -6,7 +6,7 @@
 </div>
 
 <div class="w-100">
-    <h2 class="mb-3 pt-5 pl-1 font-bold" style="color: #DDDDDD;">Create a task now!!</h3>
+    <h2 class="mb-3 pt-5 pl-1 font-weight-bold" style="color: #DDDDDD;">Create a task now!</h3>
   
     <form action="{{ url_for('home.create') }}" method="POST">
         <div class="form-group">
@@ -24,7 +24,7 @@
 {% if not g.user.tasks %}
     <div class="my-5 py-5 text-center">
         <p class="display-4 text-red mb-2">You don't have any tasks yet!</p>
-        <p class="display-4 text-red mb-4">Get Busy Friend!!</p>
+        <p class="h4 text-red text-muted mb-5">Get Busy, Friend.</p>
     </div>
     <img class="img-fluid" src="{{ url_for('static', filename='img/deadpool2.png') }}">
 {% else %}
