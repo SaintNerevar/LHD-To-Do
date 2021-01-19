@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block content %}
-{% if not g.user.tasks %}
+{% if not g.user.tasks and not session.tasks %}
     <div class="my-5 py-5 text-center">
         <p class="display-4 text-red mb-2">You don't have any tasks yet!</p>
         <p class="h4 text-red text-muted mb-5">Get Busy, Friend.</p>

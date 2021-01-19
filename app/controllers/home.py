@@ -12,8 +12,22 @@ def index():
 @blueprint.route('/create', methods=['POST'])
 def create():
     if not 'access_token' in session:
-        flash("Login with your Github Account first, will Ya?", 'info')
-        return redirect(url_for('home.index'))
+        if not 'tasks' in session:
+            session['tasks'] = []
+        elif len(session['tasks']) == 5:
+            flash("Wanna create more? Login with your Github Account first, will Ya?", 'info')
+            return redirect(url_for('home.index'))
+
+        if request.form['task-desc']:
+            task = {}
+            task['description'] = request.form['task-desc']
+            session['tasks'].append(task)
+            # Session won't be written in the response unless modified is set to True when modifying nested objects
+            session.modified = True 
+            return redirect(url_for('home.index'))
+        else:
+            flash('A task can\'t be blank, boss!', 'info')
+            return redirect(url_for('home.index'))
 
     if request.form['task-desc']:
         task_desc = request.form['task-desc']
