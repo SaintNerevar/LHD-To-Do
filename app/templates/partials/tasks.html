@@ -1,24 +1,32 @@
 {% if g.user.tasks %}
     {% for task in g.user.tasks %}
-        <div class="container rounded-pill bg-red shadow pt-1 mb-4 px-4">
+        <div class="w-75 rounded bg-red shadow py-2 px-2 mb-4">
             <div class="row">
-                <p style="color: #DDDDDD; word-wrap:break-word" class="lead w-75">{{ task['description'] }}</p>
-                <form action="{{ url_for('home.delete') }}" method="POST" class="ml-auto my-auto h-100">
-                    <input type="hidden" value="{{ task.id }}" name="task-id">
-                    <button class="btn btn-dark rounded-pill shadow" type="submit">Delete</button>
-                </form>
+                <div class="col-9">
+                    <p style="color: #DDDDDD; word-wrap:break-word" class="h5">{{ task['description'] }}</p>
+                </div>
+                <div class="col-3 my-auto d-flex justify-content-end">
+                    <form action="{{ url_for('home.delete') }}" method="POST">
+                        <input type="hidden" value="{{ task.id }}" name="task-id">
+                        <button class="btn btn-dark rounded-pill ml-auto" type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     {% endfor %}
 {% else %}
     {% for task in session.tasks %}
-        <div class="container rounded-pill bg-red shadow pt-1 mb-4 px-4">
+        <div class="w-75 rounded bg-red shadow py-2 px-2 mb-4">
             <div class="row">
-                <p style="color: #DDDDDD; word-wrap:break-word" class="lead w-75">{{ task['description'] }}</p>
-                <form action="{{ url_for('home.delete') }}" method="POST" class="ml-auto my-auto h-100">
-                    <input type="hidden" value="{{ task.id }}" name="task-id">
-                    <button class="btn btn-dark rounded-pill shadow" type="submit">Delete</button>
-                </form>
+                <div class="col-9">
+                    <p style="color: #DDDDDD; word-wrap:break-word" class="h5">{{ task['description'] }}</p>
+                </div>
+                <div class="col-3 my-auto d-flex justify-content-end">
+                    <form action="{{ url_for('home.delete') }}" method="POST">
+                        <input type="hidden" value="{{ task.id }}" name="task-id">
+                        <button class="btn btn-dark rounded-pill ml-auto" type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     {% endfor %}
