@@ -5,6 +5,7 @@ from flask import flash, redirect, render_template, request
 from flask import Blueprint, session, url_for, g
 
 from app.models.user import User
+from app.models.task import Task
 from app.settings import GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
 from app.services.github import GitHub
 
@@ -32,6 +33,14 @@ def githubCallback():
 
     session['access_token'] = access_token
     session['user_id'] = user.id
+
+    # Transfer tasks in session to user database
+    for task in session['tasks']:
+        user_id = session['user_id']
+        task_desc = task['description']
+        Task.add_task(task_desc, user_id)
+
+    session.pop('tasks', None)
 
     return redirect(url_for('home.index'))
 
